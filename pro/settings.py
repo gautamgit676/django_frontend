@@ -27,8 +27,8 @@ DEBUG = True
 
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['djangofrontend-production.up.railway.app']
-CSRF_TRUSTED_ORIGINS = ['https://djangofrontend-production.up.railway.app']
+ALLOWED_HOSTS = ['web-production-c010a.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://web-production-c010a.up.railway.app']
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
