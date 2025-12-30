@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-jm_2v4+h-1w!jy54adum2#y(0m6b*kw(j#+bvu1dpqum=k9x0d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['djangofrontend-production.up.railway.app/']
+ALLOWED_HOSTS = ['djangofrontend-production.up.railway.app']
 CSRF_TRUSTED_ORIGINS = ['https://djangofrontend-production.up.railway.app']
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
