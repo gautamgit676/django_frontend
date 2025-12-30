@@ -117,7 +117,12 @@ USE_I18N = True
 
 USE_TZ = True
 
+import os
 
+BACKEND_API_BASE = os.environ.get(
+    "BACKEND_API_BASE",
+    "https://djangofrontend-production.up.railway.app/"  # fallback for production
+)
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
