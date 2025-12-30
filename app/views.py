@@ -10,12 +10,18 @@ from django.conf import settings
 #     print(data.json())
 #     return render(request, 'home.html', {'data': data})
 
+# import os
+# BACKEND_API_BASE = os.environ.get(
+#     "BACKEND_API_BASE",
+#     "https://djangofrontend-production.up.railway.app/"  # fallback for production
+# )
 
 import logging
 
 logger = logging.getLogger(__name__)
 
-API_URL = settings.BACKEND_API_URL  # use env variable
+# API_URL = settings.BACKEND_API_URL  # use env variable
+API_URL = "https://djangofrontend-production.up.railway.app/"  # use env variable
 
 def home(request):
     data = []
