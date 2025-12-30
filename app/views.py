@@ -21,7 +21,7 @@ import logging
 logger = logging.getLogger(__name__)
 
 # API_URL = settings.BACKEND_API_URL  # use env variable
-API_URL = "https://djangod-production.up.railway.app"  # use env variable
+API_URL = "https://djangod-production.up.railway.app/school_data"  # use env variable
 
 def home(request):
     data = []
