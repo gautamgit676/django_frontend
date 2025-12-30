@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-jm_2v4+h-1w!jy54adum2#y(0m6b*kw(j#+bvu1dpqum=k9x0d
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['https://django-frontend-rosy.vercel.app/']
+ALLOWED_HOSTS = ['https://django-frontend-rosy.vercel.app']
 
 
 # Application definition
@@ -42,7 +42,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-      "whitenoise.middleware.WhiteNoiseMiddleware",  # add this
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # add this
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
