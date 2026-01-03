@@ -28,16 +28,16 @@ def home(request):
 
 
 # # create user frontend api
-# def create_user(request):
-#     url = f"{BACKEND_API_BASE}userform/"
-#     try:
-#         r = requests.post(url, timeout=5)
-#         r.raise_for_status()
-#         data = r.json()
-#     except requests.exceptions.RequestException as e:
-#         logger.error("Backend API error: %s", e)
-#         data = {
-#             "message": "Service unavailable",
-#             "data": ""
-#         }
-#     return render(request, "userform.html", {"data": data})
+def create_user(request):
+    url = f"{BACKEND_API_BASE}userform/"
+    try:
+        r = requests.post(url, timeout=5)
+        r.raise_for_status()
+        data = r.json()
+    except requests.exceptions.RequestException as e:
+        logger.error("Backend API error: %s", e)
+        data = {
+            "message": "Service unavailable",
+            "data": ""
+        }
+    return render(request, "userform.html", {"data": data})
