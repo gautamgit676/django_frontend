@@ -41,6 +41,8 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+logger = logging.getLogger(__name__)
+
 def home(request):
     url = f"{BACKEND_API_BASE}demoapi/"
     data = {}
@@ -48,12 +50,15 @@ def home(request):
     try:
         r = requests.get(url, timeout=5)
         r.raise_for_status()
-        data = r.json()   # ✅ IMPORTANT   # 🔴 IMPORTANT: use .text, not .json()
-    except Exception as e:
-        data = "Backend error"
+        data = r.json()   # ✅ JSON → Python dict
+    except requests.exceptions.RequestException as e:
+        logger.error("Backend API error: %s", e)
+        data = {
+            "message": "Service unavailable",
+            "data": ""
+        }
 
     return render(request, "home.html", {"data": data})
-
 
 
 # def home(request):
