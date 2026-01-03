@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 
 
 def home(request):
-    url = f"{BACKEND_API_BASE}demoapia/"
+    url = f"{BACKEND_API_BASE}demoapi/"
     # data = {} # Default empty data
     try:
         r = requests.get(url, timeout=5)
