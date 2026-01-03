@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Welcome | Professional Page</title>
+<title>Animated Welcome Page</title>
 
 <style>
-/* RESET */
 * {
     margin: 0;
     padding: 0;
@@ -14,7 +13,6 @@
     font-family: 'Poppins', sans-serif;
 }
 
-/* BACKGROUND */
 body {
     height: 100vh;
     background: linear-gradient(270deg, #667eea, #764ba2, #6b8cff);
@@ -24,19 +22,28 @@ body {
     color: #fff;
 }
 
-/* GRADIENT ANIMATION */
 @keyframes gradientBG {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
+/* CANVAS */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
 /* FLOATING SHAPES */
 .shape {
     position: absolute;
     border-radius: 50%;
-    opacity: 0.2;
-    animation: float 20s linear infinite;
+    opacity: 0.15;
+    animation: float 18s linear infinite;
+    z-index: 1;
 }
 
 .shape.one {
@@ -55,18 +62,10 @@ body {
     right: 10%;
 }
 
-.shape.three {
-    width: 90px;
-    height: 90px;
-    background: #fff;
-    bottom: 30%;
-    left: 20%;
-}
-
 @keyframes float {
-    0% { transform: translateY(0px); }
+    0% { transform: translateY(0); }
     50% { transform: translateY(-40px); }
-    100% { transform: translateY(0px); }
+    100% { transform: translateY(0); }
 }
 
 /* CENTER CONTENT */
@@ -77,7 +76,7 @@ body {
     align-items: center;
     text-align: center;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
 .content {
@@ -85,11 +84,10 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(30px); }
+    from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* TEXT */
 h1 {
     font-size: 3.2rem;
     margin-bottom: 15px;
@@ -99,10 +97,8 @@ h1 {
     font-size: 1.5rem;
     height: 40px;
     margin-bottom: 30px;
-    letter-spacing: 1px;
 }
 
-/* BUTTONS */
 .buttons {
     display: flex;
     justify-content: center;
@@ -110,7 +106,7 @@ h1 {
 }
 
 .btn {
-    padding: 14px 34px;
+    padding: 14px 36px;
     border-radius: 50px;
     border: none;
     font-size: 1rem;
@@ -130,64 +126,52 @@ h1 {
 }
 
 .btn:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
 }
 
-/* RESPONSIVE */
 @media(max-width: 768px) {
-    h1 {
-        font-size: 2.4rem;
-    }
-    .typing {
-        font-size: 1.2rem;
-    }
+    h1 { font-size: 2.3rem; }
+    .typing { font-size: 1.2rem; }
 }
 </style>
 </head>
 
 <body>
 
-<!-- FLOATING SHAPES -->
+<canvas id="rain"></canvas>
+
 <div class="shape one"></div>
 <div class="shape two"></div>
-<div class="shape three"></div>
 
-<!-- MAIN CONTENT -->
 <div class="container">
     <div class="content">
-        <h1>Welcome to Your Future</h1>
+        <h1>Welcome to the Gautamsinh Website </h1>
         <div class="typing" id="typing"></div>
         <div class="buttons">
             <button class="btn primary">Get Started</button>
-            <button class="btn secondary">Learn More</button>
+            <button class="btn secondary">Explore</button>
         </div>
     </div>
 </div>
 
 <script>
-/* TYPING EFFECT */
+/* =======================
+   TYPING EFFECT
+======================= */
 const texts = [
-    "Professional. Modern. Animated.",
-    "Build Stunning Web Experiences.",
-    "Designed For Success."
+    "Rajput Gautamsinh Natvarsinh",
+    "Wellcome to My Website",
+    "Rajput Gautamsinh"
 ];
 
-let count = 0;
-let index = 0;
-let currentText = '';
-let letter = '';
+let count = 0, index = 0;
 
 (function type() {
-    if (count === texts.length) {
-        count = 0;
-    }
-    currentText = texts[count];
-    letter = currentText.slice(0, ++index);
-
-    document.getElementById('typing').textContent = letter;
-
-    if (letter.length === currentText.length) {
+    if (count === texts.length) count = 0;
+    const text = texts[count];
+    document.getElementById("typing").textContent = text.slice(0, ++index);
+    if (index === text.length) {
         setTimeout(() => {
             index = 0;
             count++;
@@ -195,6 +179,81 @@ let letter = '';
     }
     setTimeout(type, 100);
 })();
+
+/* =======================
+   RAIN ANIMATION
+======================= */
+const canvas = document.getElementById("rain");
+const ctx = canvas.getContext("2d");
+
+let w = canvas.width = window.innerWidth;
+let h = canvas.height = window.innerHeight;
+
+window.addEventListener("resize", () => {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+});
+
+let drops = [];
+const maxDrops = 300;
+
+class Drop {
+    constructor(x, y, speed) {
+        this.x = x;
+        this.y = y;
+        this.speed = speed;
+        this.length = Math.random() * 20 + 10;
+    }
+
+    fall() {
+        this.y += this.speed;
+        if (this.y > h) {
+            this.y = -20;
+        }
+    }
+
+    draw() {
+        ctx.beginPath();
+        ctx.strokeStyle = "rgba(255,255,255,0.6)";
+        ctx.lineWidth = 1;
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(this.x, this.y + this.length);
+        ctx.stroke();
+    }
+}
+
+/* INITIAL RAIN */
+for (let i = 0; i < maxDrops; i++) {
+    drops.push(new Drop(
+        Math.random() * w,
+        Math.random() * h,
+        Math.random() * 6 + 4
+    ));
+}
+
+/* MOUSE INTERACTION */
+window.addEventListener("mousemove", e => {
+    for (let i = 0; i < 5; i++) {
+        drops.push(new Drop(
+            e.clientX + Math.random() * 20 - 10,
+            e.clientY,
+            Math.random() * 8 + 6
+        ));
+    }
+    if (drops.length > 600) drops.splice(0, 50);
+});
+
+/* ANIMATE */
+function animateRain() {
+    ctx.clearRect(0, 0, w, h);
+    drops.forEach(drop => {
+        drop.fall();
+        drop.draw();
+    });
+    requestAnimationFrame(animateRain);
+}
+
+animateRain();
 </script>
 
 </body>
