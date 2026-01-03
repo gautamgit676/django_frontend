@@ -12,8 +12,8 @@ logger = logging.getLogger(__name__)
 
 
 def home(request):
-    url = f"{BACKEND_API_BASE}demoapi/"
-    # data = {}
+    url = f"{BACKEND_API_BASE}demoapia/"
+    # data = {} # Default empty data
     try:
         r = requests.get(url, timeout=5)
         r.raise_for_status()
@@ -24,5 +24,4 @@ def home(request):
             "message": "Service unavailable",
             "data": ""
         }
-
     return render(request, "home.html", {"data": data})
