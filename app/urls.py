@@ -1,6 +1,7 @@
 from django.urls import path, include
-from app.views import home,create_user
+from app.views import home,create_user,userdatas
 urlpatterns = [
     path('home/', home, name='home'),
     path('userf/', create_user, name='create_user'),
+    path('userdetails/', userdatas, name='userdetails'),
 ]

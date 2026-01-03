@@ -27,6 +27,21 @@ def home(request):
     return render(request, "home.html", {"data": data})
 
 
+def userdatas(request):
+    url = f"{BACKEND_API_BASE}userform/"
+    try:
+        r = requests.get(url, timeout=5)
+        r.raise_for_status()
+        data = r.json()
+    except requests.exceptions.RequestException as e:
+        logger.error("Backend API error: %s", e)
+        data = {
+            "message": "Service unavailable",
+            "data": ""
+        }
+    return render(request, "userdata.html", {"data": data})
+
+
 # # create user frontend api
 def create_user(request):
     url = f"{BACKEND_API_BASE}userform/"
