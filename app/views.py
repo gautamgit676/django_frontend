@@ -23,16 +23,16 @@ logger = logging.getLogger(__name__)
 # API_URL = settings.BACKEND_API_URL  # use env variable
 API_URL = "https://djangod-production.up.railway.app/school_data/"  # use env variable
 
-def home(request):
-    data = []
-    try:
-        response = requests.get(API_URL, timeout=5)
-        response.raise_for_status()
-        data = response.json()
-    except requests.exceptions.RequestException as e:
-        logger.error(f"Backend API error: {e}")
+# def home(request):
+#     data = []
+#     try:
+#         response = requests.get(API_URL, timeout=5)
+#         response.raise_for_status()
+#         data = response.json()
+#     except requests.exceptions.RequestException as e:
+#         logger.error(f"Backend API error: {e}")
 
-    return render(request, "home.html", {"data": data})
+#     return render(request, "home.html", {"data": data})
 
 
 from django.conf import settings
