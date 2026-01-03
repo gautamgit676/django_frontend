@@ -75,7 +75,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "pro.wsgi.application"
 
+import os
 
+BACKEND_API_BASE = os.environ.get(
+    "BACKEND_API_BASE",
+    "https://djangorailway-production-2e1d.up.railway.app/"
+)
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 

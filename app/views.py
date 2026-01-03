@@ -33,3 +33,22 @@ def home(request):
         logger.error(f"Backend API error: {e}")
 
     return render(request, "home.html", {"data": data})
+
+
+from django.conf import settings
+import logging
+
+logger = logging.getLogger(__name__)
+
+def home(request):
+    url = f"{settings.BACKEND_API_BASE}demoapi/"
+    data = []
+
+    try:
+        response = requests.get(url, timeout=5)
+        response.raise_for_status()
+        data = response.json()
+    except requests.exceptions.RequestException as e:
+        logger.error(f"Backend API error: {e}")
+
+    return render(request, "home.html", {"data": data})
