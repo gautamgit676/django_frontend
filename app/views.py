@@ -43,13 +43,27 @@ logger = logging.getLogger(__name__)
 
 def home(request):
     url = f"{BACKEND_API_BASE}demoapi/"
-    data = []
+    data = ''
 
     try:
-        response = requests.get(url, timeout=5)
-        response.raise_for_status()
-        data = response.json()
-    except requests.exceptions.RequestException as e:
-        logger.error(f"Backend API error: {e}")
+        r = requests.get(url, timeout=5)
+        r.raise_for_status()
+        data = r.text   # 🔴 IMPORTANT: use .text, not .json()
+    except Exception as e:
+        data = "Backend error"
 
     return render(request, "home.html", {"data": data})
+
+
+# def home(request):
+#     url = f"{settings.BACKEND_API_BASE}userdata/"
+#     data = ""
+
+#     try:
+#         r = requests.get(url, timeout=5)
+#         r.raise_for_status()
+#         data = r.text   # 🔴 IMPORTANT: use .text, not .json()
+#     except Exception as e:
+#         data = "Backend error"
+
+#     return render(request, "home.html", {"data": data})

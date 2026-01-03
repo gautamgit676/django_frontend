@@ -12,21 +12,6 @@
         <p>{{ item }}</p>
     {% endfor %}
 
-    <div>
-        <!-- {% if data %} -->
-            <h2>School Data:</h2>
-            <ul>
-                {% for item in data.json %}
-                    <li>{{ item.name }}</li>
-                    <li>{{ item.location }}</li>
-                    <li>{{ item.year_of_establishment }}</li>
-                    <li>{{ item.image }}</li>
-                    <img src="{{ item.image.url }}" alt="{{ item.name }}" width="100" height="100">    
-                    
-                {% endfor %}
-            </ul>
-        <!-- {% else %}
-            <p>No data available.</p>
-        {% endif %} -->
+   
 </body>
 </html>
