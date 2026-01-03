@@ -11,6 +11,10 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+def mainpage(request):
+    return render(request, "main.html")
+
+
 def home(request):
     url = f"{BACKEND_API_BASE}demoapi/"
     # data = {} # Default empty data

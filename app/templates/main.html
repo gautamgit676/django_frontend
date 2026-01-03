@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome | Professional Page</title>
+
+<style>
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* BACKGROUND */
+body {
+    height: 100vh;
+    background: linear-gradient(270deg, #667eea, #764ba2, #6b8cff);
+    background-size: 600% 600%;
+    animation: gradientBG 15s ease infinite;
+    overflow: hidden;
+    color: #fff;
+}
+
+/* GRADIENT ANIMATION */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* FLOATING SHAPES */
+.shape {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.2;
+    animation: float 20s linear infinite;
+}
+
+.shape.one {
+    width: 120px;
+    height: 120px;
+    background: #fff;
+    top: 10%;
+    left: 10%;
+}
+
+.shape.two {
+    width: 180px;
+    height: 180px;
+    background: #000;
+    bottom: 15%;
+    right: 10%;
+}
+
+.shape.three {
+    width: 90px;
+    height: 90px;
+    background: #fff;
+    bottom: 30%;
+    left: 20%;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-40px); }
+    100% { transform: translateY(0px); }
+}
+
+/* CENTER CONTENT */
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.content {
+    animation: fadeIn 2s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* TEXT */
+h1 {
+    font-size: 3.2rem;
+    margin-bottom: 15px;
+}
+
+.typing {
+    font-size: 1.5rem;
+    height: 40px;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+/* BUTTONS */
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn {
+    padding: 14px 34px;
+    border-radius: 50px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.4s ease;
+}
+
+.btn.primary {
+    background: #fff;
+    color: #764ba2;
+}
+
+.btn.secondary {
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+/* RESPONSIVE */
+@media(max-width: 768px) {
+    h1 {
+        font-size: 2.4rem;
+    }
+    .typing {
+        font-size: 1.2rem;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- FLOATING SHAPES -->
+<div class="shape one"></div>
+<div class="shape two"></div>
+<div class="shape three"></div>
+
+<!-- MAIN CONTENT -->
+<div class="container">
+    <div class="content">
+        <h1>Welcome to Your Future</h1>
+        <div class="typing" id="typing"></div>
+        <div class="buttons">
+            <button class="btn primary">Get Started</button>
+            <button class="btn secondary">Learn More</button>
+        </div>
+    </div>
+</div>
+
+<script>
+/* TYPING EFFECT */
+const texts = [
+    "Professional. Modern. Animated.",
+    "Build Stunning Web Experiences.",
+    "Designed For Success."
+];
+
+let count = 0;
+let index = 0;
+let currentText = '';
+let letter = '';
+
+(function type() {
+    if (count === texts.length) {
+        count = 0;
+    }
+    currentText = texts[count];
+    letter = currentText.slice(0, ++index);
+
+    document.getElementById('typing').textContent = letter;
+
+    if (letter.length === currentText.length) {
+        setTimeout(() => {
+            index = 0;
+            count++;
+        }, 2000);
+    }
+    setTimeout(type, 100);
+})();
+</script>
+
+</body>
+</html>
