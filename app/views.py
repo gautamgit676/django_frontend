@@ -35,13 +35,14 @@ API_URL = "https://djangod-production.up.railway.app/school_data/"  # use env va
 #     return render(request, "home.html", {"data": data})
 
 
-from django.conf import settings
+# from django.conf import settings
+from pro.settings import BACKEND_API_BASE
 import logging
 
 logger = logging.getLogger(__name__)
 
 def home(request):
-    url = f"{settings.BACKEND_API_BASE}demoapi/"
+    url = f"{BACKEND_API_BASE}demoapi/"
     data = []
 
     try:
