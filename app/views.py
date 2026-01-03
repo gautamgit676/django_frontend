@@ -28,7 +28,7 @@ def home(request):
 
 
 def userdatas(request):
-    url = f"{BACKEND_API_BASE}userform/"
+    url = f"{BACKEND_API_BASE}userdata/"
     try:
         r = requests.get(url, timeout=5)
         r.raise_for_status()
