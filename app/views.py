@@ -66,17 +66,56 @@ def create_user(request):
 
 
 # sudent form fillform
-def studentforms(request):
-    url = f"{BACKEND_API_BASE}studentform/"
+# def studentforms(request):
+#     url = f"{BACKEND_API_BASE}studentform/"
+#     try:
+#         r = requests.post(url, timeout=5)
+#         r.raise_for_status()
+#         data = r.json()
+#         logger.info("Fetched user data: %s", data)
+#     except requests.exceptions.RequestException as e:
+#         logger.error("Backend API error: %s", e)
+#         data = {
+#             "message": "Service unavailable",
+#             "data": ""
+#         }
+#     return render(request, "studentadd.html", {"data": data})
+
+
+def create_student(request):
+    # 1️⃣ Fetch FK data (users)
+    users_url = f"{BACKEND_API_BASE}userdata/"  # or User API
+    fk_data = []
     try:
-        r = requests.post(url, timeout=5)
+        r = requests.get(users_url, timeout=5)
         r.raise_for_status()
-        data = r.json()
-        logger.info("Fetched user data: %s", data)
-    except requests.exceptions.RequestException as e:
-        logger.error("Backend API error: %s", e)
-        data = {
-            "message": "Service unavailable",
-            "data": ""
+        fk_data = r.json()
+    except Exception as e:
+        logger.error("Failed to fetch FK data: %s", e)
+
+    # 2️⃣ Handle form POST
+    response_data = {}
+    if request.method == "POST":
+        student_url = f"{BACKEND_API_BASE}studentform/"
+        payload = {
+            "user": request.POST.get("user"),  # FK id
+            "full_name": request.POST.get("full_name"),
+            "roll_number": request.POST.get("roll_number"),
+            "date_of_birth": request.POST.get("date_of_birth"),
+            "address": request.POST.get("address"),
+            "phone_number": request.POST.get("phone_number")
         }
-    return render(request, "studentadd.html", {"data": data})
+
+        try:
+            r = requests.post(student_url, json=payload, timeout=5)
+            r.raise_for_status()
+            response_data = r.json()
+        except requests.exceptions.RequestException as e:
+            logger.error("Backend API error: %s", e)
+            response_data = {"message": "Service unavailable"}
+
+    return render(
+        request,
+        "studentform.html",
+        {"fk_data": fk_data, "response_data": response_data}
+    )
