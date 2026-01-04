@@ -5,5 +5,5 @@ urlpatterns = [
     path('', mainpage, name='mainpage'),
     path('userf/', create_user, name='create_user'),
     path('userdetails/', userdatas, name='userdetails'),
-    path('studentform/', create_student, name='student'),
+    path('student/', create_student, name='student'),
 ]
