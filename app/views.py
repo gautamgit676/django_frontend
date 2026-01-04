@@ -96,7 +96,7 @@ def create_student(request):
     # 2️⃣ Handle form POST
     response_data = {}
     if request.method == "POST":
-        student_url = f"{BACKEND_API_BASE}studentform/"
+        student_url = f"{BACKEND_API_BASE}stu/"
         payload = {
             "user": request.POST.get("user"),  # FK id
             "full_name": request.POST.get("full_name"),
