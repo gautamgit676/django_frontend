@@ -44,7 +44,7 @@ def userdatas(request):
             "message": "Service unavailable",
             "data": ""
         }
-    return render(request, "userdata.html", {"data": data})
+    return render(request, "studentadd.html", {"data": data})
 
 
 # # create user frontend api
@@ -61,3 +61,20 @@ def create_user(request):
             "data": ""
         }
     return render(request, "userform.html", {"data": data})
+
+
+# sudent form fillform
+def studentforms(request):
+    url = f"{BACKEND_API_BASE}studentform/"
+    try:
+        r = requests.post(url, timeout=5)
+        r.raise_for_status()
+        data = r.json()
+        logger.info("Fetched user data: %s", data)
+    except requests.exceptions.RequestException as e:
+        logger.error("Backend API error: %s", e)
+        data = {
+            "message": "Service unavailable",
+            "data": ""
+        }
+    return render(request, "studentadd.html", {"data": data})
