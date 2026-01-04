@@ -116,6 +116,6 @@ def create_student(request):
 
     return render(
         request,
-        "studentform.html",
+        "studentadd.html",
         {"fk_data": fk_data, "response_data": response_data}
     )
