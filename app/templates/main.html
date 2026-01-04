@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gautamsinh Welcome</title>
+<title>Rajput Gautamsinh</title>
 
 <style>
 * {
@@ -13,247 +13,285 @@
     font-family: 'Poppins', sans-serif;
 }
 
+:root {
+    --hue: 25;
+}
+
 body {
     height: 100vh;
-    background: linear-gradient(270deg, #667eea, #764ba2, #6b8cff);
+    background: linear-gradient(
+        270deg,
+        hsl(var(--hue), 70%, 22%),
+        hsl(calc(var(--hue) + 10), 70%, 28%),
+        hsl(calc(var(--hue) + 20), 70%, 22%)
+    );
     background-size: 600% 600%;
-    animation: gradientBG 15s ease infinite;
+    animation: bgMove 30s ease infinite;
     overflow: hidden;
     color: #fff;
 }
 
-@keyframes gradientBG {
+@keyframes bgMove {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
 }
 
-/* CANVAS */
 canvas {
     position: fixed;
-    top: 0;
-    left: 0;
+    inset: 0;
     pointer-events: none;
     z-index: 0;
 }
 
-/* FLOATING SHAPES */
-.shape {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.15;
-    animation: float 18s linear infinite;
-    z-index: 1;
-}
-
-.shape.one {
-    width: 120px;
-    height: 120px;
-    background: #fff;
-    top: 10%;
-    left: 10%;
-}
-
-.shape.two {
-    width: 180px;
-    height: 180px;
-    background: #000;
-    bottom: 15%;
-    right: 10%;
-}
-
-@keyframes float {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-40px); }
-    100% { transform: translateY(0); }
-}
-
 /* CENTER CONTENT */
 .container {
+    position: relative;
+    z-index: 5;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    position: relative;
-    z-index: 2;
 }
 
 .content {
-    animation: fadeIn 2s ease forwards;
+    animation: intro 2s ease forwards,
+               glowPulse 5s ease-in-out infinite;
 }
 
-@keyframes fadeIn {
+@keyframes intro {
     from { opacity: 0; transform: translateY(40px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* ===== TEXT ANIMATION ===== */
 h1 {
-    font-size: 3.2rem;
+    font-size: 3.5rem;
     margin-bottom: 15px;
+    background: linear-gradient(
+        90deg,
+        hsl(var(--hue), 90%, 70%),
+        hsl(calc(var(--hue) + 10), 90%, 80%),
+        hsl(var(--hue), 90%, 70%)
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textFloat 6s ease-in-out infinite,
+               textShine 8s linear infinite;
 }
 
-.typing {
-    font-size: 1.5rem;
-    height: 40px;
-    margin-bottom: 30px;
+p {
+    font-size: 1.4rem;
+    opacity: 0.9;
+    animation: textFloat 7s ease-in-out infinite;
 }
 
+@keyframes textFloat {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+}
+
+@keyframes textShine {
+    0%   { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+@keyframes glowPulse {
+    0% {
+        filter: drop-shadow(0 0 0 rgba(255,200,120,0));
+    }
+    50% {
+        filter: drop-shadow(0 0 20px rgba(255,180,100,0.25));
+    }
+    100% {
+        filter: drop-shadow(0 0 0 rgba(255,200,120,0));
+    }
+}
+
+/* BUTTONS */
 .buttons {
+    margin-top: 35px;
     display: flex;
     justify-content: center;
     gap: 20px;
 }
 
-.btn {
-    padding: 14px 36px;
+button {
+    padding: 14px 38px;
     border-radius: 50px;
     border: none;
-    font-size: 1rem;
     cursor: pointer;
-    transition: all 0.4s ease;
+    font-size: 1rem;
+    transition: 0.4s ease;
+    background: hsl(var(--hue), 80%, 60%);
+    color: #000;
 }
 
-.btn.primary {
-    background: #fff;
-    color: #764ba2;
-}
-
-.btn.secondary {
+button.secondary {
     background: transparent;
-    color: #fff;
-    border: 2px solid #fff;
+    border: 2px solid hsl(var(--hue), 80%, 60%);
+    color: hsl(var(--hue), 80%, 60%);
 }
 
-.btn:hover {
+button:hover {
     transform: translateY(-6px) scale(1.05);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.35);
-}
-
-@media(max-width: 768px) {
-    h1 { font-size: 2.3rem; }
-    .typing { font-size: 1.2rem; }
+    box-shadow: 0 20px 40px rgba(0,0,0,0.45);
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="rain"></canvas>
-
-<div class="shape one"></div>
-<div class="shape two"></div>
+<canvas id="fx"></canvas>
 
 <div class="container">
     <div class="content">
-        <h1>Welcome to the Gautamsinh Website </h1>
-        <div class="typing" id="typing"></div>
+        <h1>WELLCOME TO MY SITE</h1>
+        <p>Rajput Gautamsinh</p>
         <div class="buttons">
-            <button class="btn primary">Get Started</button>
-            <button class="btn secondary">Explore</button>
+            <button>Enter</button>
+            <button class="secondary">Explore</button>
         </div>
     </div>
 </div>
 
 <script>
-/* =======================
-   TYPING EFFECT
-======================= */
-const texts = [
-    "Rajput Gautamsinh Natvarsinh",
-    "Wellcome to My Website",
-    "Rajput Gautamsinh"
-];
-
-let count = 0, index = 0;
-
-(function type() {
-    if (count === texts.length) count = 0;
-    const text = texts[count];
-    document.getElementById("typing").textContent = text.slice(0, ++index);
-    if (index === text.length) {
-        setTimeout(() => {
-            index = 0;
-            count++;
-        }, 2000);
-    }
-    setTimeout(type, 100);
-})();
-
-/* =======================
-   RAIN ANIMATION
-======================= */
-const canvas = document.getElementById("rain");
+/* =========================
+   CANVAS SETUP
+========================= */
+const canvas = document.getElementById("fx");
 const ctx = canvas.getContext("2d");
 
-let w = canvas.width = window.innerWidth;
-let h = canvas.height = window.innerHeight;
+let w = canvas.width = innerWidth;
+let h = canvas.height = innerHeight;
 
 window.addEventListener("resize", () => {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
+    w = canvas.width = innerWidth;
+    h = canvas.height = innerHeight;
 });
 
-let drops = [];
-const maxDrops = 300;
+/* =========================
+   CLICK-CHANGE WARM COLORS 🔥
+========================= */
+let hue = 25;
+let targetHue = 35;
 
+function updateHue() {
+    hue += (targetHue - hue) * 0.01;
+    document.documentElement.style.setProperty("--hue", hue);
+    requestAnimationFrame(updateHue);
+}
+updateHue();
+
+window.addEventListener("click", () => {
+    targetHue = 10 + Math.random() * 45;
+
+    content.animate(
+        [
+            { transform: "scale(1)" },
+            { transform: "scale(1.04)" },
+            { transform: "scale(1)" }
+        ],
+        { duration: 600, easing: "ease-out" }
+    );
+});
+
+/* =========================
+   PHYSICS (SLOW & CALM)
+========================= */
+const gravity = 0.08;
+let wind = 0.12;
+let drops = [];
+let splashes = [];
+let lightningAlpha = 0;
+
+/* DROP */
 class Drop {
-    constructor(x, y, speed) {
+    constructor(x, y) {
         this.x = x;
         this.y = y;
-        this.speed = speed;
-        this.length = Math.random() * 20 + 10;
+        this.vy = Math.random() * 1.2 + 1.2;
+        this.vx = wind;
+        this.len = Math.random() * 14 + 10;
     }
-
-    fall() {
-        this.y += this.speed;
+    update() {
+        this.vy += gravity;
+        this.x += this.vx;
+        this.y += this.vy;
         if (this.y > h) {
-            this.y = -20;
+            for (let i = 0; i < 4; i++) splashes.push(new Splash(this.x, h));
+            this.reset();
         }
     }
-
+    reset() {
+        this.x = Math.random() * w;
+        this.y = -40;
+        this.vy = Math.random() * 1.5 + 1;
+    }
     draw() {
+        ctx.strokeStyle = `hsla(${hue},85%,65%,0.7)`;
         ctx.beginPath();
-        ctx.strokeStyle = "rgba(255,255,255,0.6)";
-        ctx.lineWidth = 1;
         ctx.moveTo(this.x, this.y);
-        ctx.lineTo(this.x, this.y + this.length);
+        ctx.lineTo(this.x, this.y + this.len);
         ctx.stroke();
     }
 }
 
-/* INITIAL RAIN */
-for (let i = 0; i < maxDrops; i++) {
-    drops.push(new Drop(
-        Math.random() * w,
-        Math.random() * h,
-        Math.random() * 6 + 4
-    ));
+/* SPLASH */
+class Splash {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+        this.vx = Math.random() * 2 - 1;
+        this.vy = Math.random() * -2 - 1;
+        this.life = 22;
+    }
+    update() {
+        this.vy += gravity * 0.3;
+        this.x += this.vx;
+        this.y += this.vy;
+        this.life--;
+    }
+    draw() {
+        ctx.fillStyle = `hsla(${hue},80%,70%,0.8)`;
+        ctx.fillRect(this.x, this.y, 2, 2);
+    }
 }
 
-/* MOUSE INTERACTION */
+/* INIT */
+for (let i = 0; i < 260; i++) {
+    drops.push(new Drop(Math.random() * w, Math.random() * h));
+}
+
 window.addEventListener("mousemove", e => {
-    for (let i = 0; i < 5; i++) {
-        drops.push(new Drop(
-            e.clientX + Math.random() * 20 - 10,
-            e.clientY,
-            Math.random() * 8 + 6
-        ));
-    }
-    if (drops.length > 600) drops.splice(0, 50);
+    for (let i = 0; i < 3; i++) drops.push(new Drop(e.clientX, e.clientY));
+    if (drops.length > 500) drops.splice(0, 20);
 });
 
-/* ANIMATE */
-function animateRain() {
-    ctx.clearRect(0, 0, w, h);
-    drops.forEach(drop => {
-        drop.fall();
-        drop.draw();
-    });
-    requestAnimationFrame(animateRain);
-}
+setInterval(() => {
+    if (Math.random() > 0.96) lightningAlpha = 0.6;
+}, 3000);
 
-animateRain();
+setInterval(() => {
+    wind = (Math.random() - 0.5) * 0.6;
+}, 5000);
+
+/* LOOP */
+function animate() {
+    ctx.clearRect(0, 0, w, h);
+    drops.forEach(d => { d.update(); d.draw(); });
+    splashes.forEach((s,i)=>{ s.update(); s.draw(); if(s.life<=0)splashes.splice(i,1); });
+    if (lightningAlpha > 0) {
+        ctx.fillStyle = `rgba(255,240,220,${lightningAlpha})`;
+        ctx.fillRect(0, 0, w, h);
+        lightningAlpha -= 0.02;
+    }
+    requestAnimationFrame(animate);
+}
+animate();
 </script>
 
 </body>
