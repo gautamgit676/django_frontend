@@ -16,6 +16,11 @@ roll_number
 date_of_birth
 address
 phone_number create this form like this name -->
+  {% for i in data %}
+            <!-- <option value="{{ i.id }}">{{ i.username }}</option> -->
+             <p>{{ i.username }}</p>
+        {% endfor %}
+        
 <form method="post">
     {% csrf_token %}
     
@@ -27,7 +32,7 @@ phone_number create this form like this name -->
         <option value="">Select User</option>
         {% for i in data %}
             <!-- <option value="{{ i.id }}">{{ i.username }}</option> -->
-            <option value="{{ i.id }}"> <p>{{ i.username }} - {{ i.email }}</p></option>
+            <option value="{{ i.id }}"> <p>{{ i.username }}</p></option>
         {% endfor %}
     </select>
    
