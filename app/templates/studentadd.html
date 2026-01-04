@@ -26,7 +26,8 @@ phone_number create this form like this name -->
     <select name="user_id" id="user_id">
         <option value="">Select User</option>
         {% for i in data %}
-            <option value="{{ i.id }}">{{ i.username }}</option>
+            <!-- <option value="{{ i.id }}">{{ i.username }}</option> -->
+            <option value="{{ i.id }}"> <p>{{ i.username }} - {{ i.email }}</p></option>
         {% endfor %}
     </select>
    
