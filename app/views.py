@@ -37,6 +37,7 @@ def userdatas(request):
         r = requests.get(url, timeout=5)
         r.raise_for_status()
         data = r.json()
+        logger.info("Fetched user data: %s", data)
     except requests.exceptions.RequestException as e:
         logger.error("Backend API error: %s", e)
         data = {
