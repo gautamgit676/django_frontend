@@ -8,11 +8,11 @@
     {% csrf_token %}
     <b>add code</b>
     <label>User:</label>
-    <select name="user" required>
+    <!-- <select name="user" required>
         {% for user in fk_data %}
             <option value="{{ user.id }}">{{ user.username }}</option>
         {% endfor %}
-    </select><br><br>
+    </select><br><br> -->
 
     <label>Full Name:</label>
     <input type="text" name="full_name" required><br><br>
