@@ -1,3 +1,7 @@
+{% extends "main.html" %}
+
+
+{% block blockname %}
 <h1>Create Student</h1>
 
 {% if response_data.message %}
@@ -31,3 +35,5 @@
 
     <button type="submit">Submit</button>
 </form>
+
+{% endblock blockname %}
