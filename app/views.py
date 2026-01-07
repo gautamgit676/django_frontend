@@ -15,12 +15,8 @@ def mainpage(request):
     return render(request, "main.html")
 
 
-
-# # create user frontend api
-def UserCreate(request):
-    url = f"{BACKEND_API_BASE}userdata/"
-    l= requests.get(url)
-    url = f"{BACKEND_API_BASE}userform/"
+def Userapicreate(request):
+    url = f"{BACKEND_API_BASE}userapi/"
     try:
         r = requests.post(url, timeout=5)
         r.raise_for_status()
@@ -31,7 +27,25 @@ def UserCreate(request):
             "message": "Service unavailable",
             "data": ""
         }
-    return render(request, "userform.html", {"data": l})
+    return render(request, "userform.html", {"data": data})
+
+
+# # # create user frontend api
+# def UserCreate(request):
+#     url = f"{BACKEND_API_BASE}userdata/"
+#     l= requests.get(url)
+#     url = f"{BACKEND_API_BASE}userform/"
+#     try:
+#         r = requests.post(url, timeout=5)
+#         r.raise_for_status()
+#         data = r.json()
+#     except requests.exceptions.RequestException as e:
+#         logger.error("Backend API error: %s", e)
+#         data = {
+#             "message": "Service unavailable",
+#             "data": ""
+#         }
+#     return render(request, "userform.html", {"data": l})
 
 
 
