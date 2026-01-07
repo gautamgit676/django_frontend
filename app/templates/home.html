@@ -1,19 +1,30 @@
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
-{% extends "main.html" %}
-
-
-{% block blockname %}
 
 <body style="background-color: rgb(185, 203, 84);">
     
     
     <h1>Welcome to the Home Page gautamsinh</h1>
-    {{ data.data }}
+    {{ data }}
     <a href="{% url 'userf' %}">Create User</a>
 
 
 
    <!-- close extends -->
-{% endblock blockname %}
+<!-- {% endblock blockname %} -->
+
+    
+</body>
+</html>
+<!-- {% extends "main.html" %}
+
+
+{% block blockname %} -->

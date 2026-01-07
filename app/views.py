@@ -15,6 +15,7 @@ def mainpage(request):
     return render(request, "main.html")
 
 
+
 # # create user frontend api
 def UserCreate(request):
     url = f"{BACKEND_API_BASE}userdata/"
