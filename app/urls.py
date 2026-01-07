@@ -6,6 +6,6 @@ urlpatterns = [
     path('', mainpage, name='mainpage'),
     path('userf/', Userapicreate, name='userf'),
     # path("demoapi/", demoapi, name="demoapi"   ),
-    # path('userdetails/', userdatas, name='userdetails'),
+    path('userdetails/', Usersdata, name='userdetails'),
     # path('student/', create_student, name='student'),
 ]
