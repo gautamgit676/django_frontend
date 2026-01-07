@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-secret-key")
 
-DEBUG = False  # ✅ MUST be False in production
+DEBUG = True  # ✅ MUST be False in production
 
 ALLOWED_HOSTS = [
     "web-production-c010a.up.railway.app",
