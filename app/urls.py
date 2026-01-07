@@ -1,9 +1,10 @@
 from django.urls import path, include
-from app.views import home,create_user, create_student,userdatas,mainpage
+from app.views import *
+
 urlpatterns = [
     path('home/', home, name='home'),
     path('', mainpage, name='mainpage'),
-    path('userf/', create_user, name='create_user'),
-    path('userdetails/', userdatas, name='userdetails'),
-    path('student/', create_student, name='student'),
+    path('userf/', UserCreate, name='userf'),
+    # path('userdetails/', userdatas, name='userdetails'),
+    # path('student/', create_student, name='student'),
 ]

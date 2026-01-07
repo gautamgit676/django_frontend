@@ -12,7 +12,6 @@ ALLOWED_HOSTS = [
     "localhost",
     "127.0.0.1",
 ]
-
 # HTTPS / Railway proxy
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 CSRF_COOKIE_SECURE = True
@@ -65,7 +64,7 @@ WSGI_APPLICATION = "pro.wsgi.application"
 # 🔗 BACKEND API (IMPORTANT)
 BACKEND_API_BASE = os.environ.get(
     "BACKEND_API_BASE",
-    "https://djangorailway-production-2e1d.up.railway.app/"
+    "https://djangodbconnect-production.up.railway.app/"
 )
 
 DATABASES = {
