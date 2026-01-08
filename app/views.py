@@ -61,22 +61,43 @@ def User_Profile(request):
         }
     return render(request, "userprofile.html", {"data": data})
 
-
+logger = logging.getLogger(__name__)
 
 def loginuser(request):
-    url = f"{BACKEND_API_BASE}login/"
-    try:
-        r = requests.post(url, timeout=5)
-        r.raise_for_status()
-        data = r.json()
-        return  redirect('mainpage')
-    except requests.exceptions.RequestException as e:
-        logger.error("Backend API error: %s", e)
-        data = {
-            "message": "Service unavailable",
-            "data": ""
+    if request.method == "POST":
+        url = f"{BACKEND_API_BASE}login/"
+
+        payload = {
+            "username": request.POST.get("username"),
+            "password": request.POST.get("password"),
         }
-    return render(request, "userlogin.html", {"data": data})
+
+        headers = {
+            "Content-Type": "application/json"
+        }
+
+        try:
+            r = requests.post(url, json=payload, headers=headers, timeout=5)
+            r.raise_for_status()
+            data = r.json()
+
+            # ✅ store token in session
+            request.session["access"] = data.get("access")
+            request.session["refresh"] = data.get("refresh")
+
+            return redirect("mainpage")
+
+        except requests.exceptions.HTTPError:
+            logger.error("Backend error response: %s", r.text)
+            data = {"message": "Invalid username or password"}
+
+        except requests.exceptions.RequestException as e:
+            logger.error("Backend API error: %s", e)
+            data = {"message": "Service unavailable"}
+
+        return render(request, "userlogin.html", {"data": data})
+
+    return render(request, "userlogin.html")
 
 # # # create user frontend api
 # def UserCreate(request):
