@@ -63,7 +63,20 @@ def User_Profile(request):
 
 
 
-
+def loginuser(request):
+    url = f"{BACKEND_API_BASE}login/"
+    try:
+        r = requests.post(url, timeout=5)
+        r.raise_for_status()
+        data = r.json()
+        logger.info("User login response: %s", data)
+    except requests.exceptions.RequestException as e:
+        logger.error("Backend API error: %s", e)
+        data = {
+            "message": "Service unavailable",
+            "data": ""
+        }
+    return render(request, "userlogin.html", {"data": data})
 
 # # # create user frontend api
 # def UserCreate(request):

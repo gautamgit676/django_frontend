@@ -109,6 +109,8 @@ button { padding:14px 38px; border-radius:50px; border:none; cursor:pointer; bac
 <header class="navbar">
   <div class="logo">Cinematic</div>
   <ul class="nav-links">
+   
+    
     <li><a href="{% url 'mainpage' %}">Desk</a></li>
     <li><a href="{% url 'home' %}">Home</a></li>
     <li><a href="{% url 'userf' %}">Register</a></li>
@@ -120,6 +122,8 @@ button { padding:14px 38px; border-radius:50px; border:none; cursor:pointer; bac
     <span></span><span></span><span></span>
   </div>
 </header>
+
+
 {% block blockname %}
 {% endblock blockname %}
 <!-- BACKGROUND IMAGES -->
@@ -140,6 +144,7 @@ button { padding:14px 38px; border-radius:50px; border:none; cursor:pointer; bac
     <h1><b>>Rajput Gautamsinh<p>Rajput Gautamsinh</b></p></h1>
 
     <p>વીર ભોગ્ય વસુંધરા</p>
+    <li> useranme : {{user.username}}</li>
   </div>
 </div>
 
