@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render ,redirect
 import requests
 from django.conf import settings
 # Create your views here.
@@ -69,7 +69,7 @@ def loginuser(request):
         r = requests.post(url, timeout=5)
         r.raise_for_status()
         data = r.json()
-        logger.info("User login response: %s", data)
+        return  redirect('mainpage')
     except requests.exceptions.RequestException as e:
         logger.error("Backend API error: %s", e)
         data = {
