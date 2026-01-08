@@ -47,19 +47,57 @@ def Usersdata(request):
 
 
 def User_Profile(request):
-    url = f"{BACKEND_API_BASE}userprofiles/"
-    try:
-        r = requests.get(url, timeout=5)
-        r.raise_for_status()
-        data = r.json()
-        logger.info("Fetched user profile data: %s", data)
-    except requests.exceptions.RequestException as e:
-        logger.error("Backend API error: %s", e)
-        data = {
-            "message": "Service unavailable",
-            "data": ""
+    if request.method == "POST":
+        url = f"{BACKEND_API_BASE}userprofiles/"
+
+        token = request.session.get("access")
+        if not token:
+            return redirect("login")
+
+        headers = {
+            "Authorization": f"Bearer {token}"
         }
-    return render(request, "userprofile.html", {"data": data})
+
+        data = {
+            "address": request.POST.get("address"),
+            "shop_name": request.POST.get("shop_name"),
+            "pincode": request.POST.get("pincode"),
+            "city": request.POST.get("city"),
+            "state": request.POST.get("state"),
+            "country": request.POST.get("country"),
+        }
+
+        files = {}
+        if request.FILES.get("profile_image"):
+            files["profile_image"] = request.FILES["profile_image"]
+
+        try:
+            r = requests.post(
+                url,
+                data=data,      # ✅ form-data
+                files=files,    # ✅ file upload
+                headers=headers,
+                timeout=10
+            )
+            r.raise_for_status()
+            response_data = r.json()
+
+            logger.info("Profile saved: %s", response_data)
+            return redirect("profile_success")
+
+        except requests.exceptions.HTTPError:
+            logger.error("Backend error: %s", r.text)
+            return render(request, "userprofile.html", {
+                "error": "Invalid data submitted"
+            })
+
+        except requests.exceptions.RequestException as e:
+            logger.error("Backend API error: %s", e)
+            return render(request, "userprofile.html", {
+                "error": "Service unavailable"
+            })
+
+    return render(request, "userprofile.html")
 
 logger = logging.getLogger(__name__)
 
