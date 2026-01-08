@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+<form action="" method="post">
+    {% csrf_token %}
+    <h2>User Profile</h2>
+ <!-- {
+"user" : 8,
+"address" : "nailgai JDKSHDS",
+"shop_name": "shyamRAM BHAROSHE",
+"pincode" : "123545",
+"city" : "SANAND",
+"state" : "GUJRATA",
+"country" : "INDIA"
+} -->
+  <!-- this field ad  -->
+
+    {% csrf_token %}
+
+
+    <label for="address">Address:</label>
+    <input type="text" id="address" name="address" value="{{ profile.address }}" required><br><br>
+
+    <label for="shop_name">Shop Name:</label>
+    <input type="text" id="shop_name" name="shop_name" value="{{ profile.shop_name }}" required><br><br>
+   
+    <label for="pincode">Pincode:</label>
+    <input type="text" id="pincode" name="pincode" value="{{ profile.pincode }}" required><br><br>
+   
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city" value="{{ profile.city }}" required><br><br>
+    
+    <label for="state">State:</label>
+    <input type="text" id="state" name="state" value="{{ profile.state }}" required><br><br>
+   
+    <label for="country">Country:</label>
+    <input type="text" id="country" name="country" value="{{ profile.country }}" required><br><br>
+
+    <label for="profile_picture">Profile Picture:</label>
+   <input type="file" name="profile_picture" id="profile_picture">
+   
+    <input type="submit" value="Update Profile">
+
+
+</form>
+
+</body>
+</html>
