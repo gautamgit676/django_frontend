@@ -125,6 +125,12 @@ button { padding:14px 38px; border-radius:50px; border:none; cursor:pointer; bac
   </div>
 </header>
 
+{% if user %}
+  <li>Username: {{ user.username }}</li>
+  <li>Email: {{ user.email }}</li>
+{% else %}
+  <li>Not logged in</li>
+{% endif %}
 
 {% block blockname %}
 {% endblock blockname %}

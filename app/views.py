@@ -11,8 +11,23 @@ import logging
 logger = logging.getLogger(__name__)
 
 
+# def mainpage(request):
+#     return render(request, "main.html")
+
 def mainpage(request):
-    return render(request, "main.html")
+    token = request.session.get("access")
+
+    user_data = None
+
+    if token:
+        headers = {
+            "Authorization": f"Bearer {token}"
+        }
+        r = requests.get(f"{BACKEND_API_BASE}me/", headers=headers)
+        if r.status_code == 200:
+            user_data = r.json()
+
+    return render(request, "mainpage.html", {"user": user_data})
 
 
 def Userapicreate(request):
@@ -82,7 +97,7 @@ def User_Profile(request):
 
         token = request.session.get("access")
         if not token:
-            return redirect("login")
+            return redirect("userlogin")
 
         headers = {
             "Authorization": f"Bearer {token}"
