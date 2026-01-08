@@ -1,0 +1,28 @@
+.page-container {
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.scroll-box {
+    max-height: 400px;        /* controls scroll height */
+    overflow-y: auto;         /* vertical scroller */
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.user-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    padding: 8px;
+    margin-bottom: 6px;
+    background: white;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.user-row:nth-child(even) {
+    background-color: #f1f1f1;
+}

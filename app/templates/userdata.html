@@ -1,14 +1,24 @@
 {% extends "main.html" %}
 
-
 {% block blockname %}
 
-<body >
-    web pages
-    {% for item in data %}
-        <p>{{ item.username }} - {{ item.email }} - {{ item.role }} -- {{ item.phone_number }}</p>
-    {% endfor %}
 
-    <!-- close extends -->
+
+<div class="page-container">
+    <h2>User List</h2>
+
+    <div class="scroll-box">
+        {% for item in data %}
+            <div class="user-row">
+                <span><strong>{{ item.username }}</strong></span>
+                <span>{{ item.email }}</span>
+                <span>{{ item.role }}</span>
+                <span>{{ item.phone_number }}</span>
+            </div>
+        {% empty %}
+            <p>No users found.</p>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock blockname %}
