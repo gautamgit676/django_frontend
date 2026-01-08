@@ -18,11 +18,11 @@
     grid-template-columns: 1fr 2fr 1fr 1fr;
     padding: 8px;
     margin-bottom: 6px;
-    background: rgb(217, 233, 135);
+    background: rgb(37, 38, 30);
     border-radius: 4px;
     font-size: 14px;
 }
 
 .user-row:nth-child(even) {
-    background-color: #e9dc65;
+    background-color: #1b1a17;
 }
