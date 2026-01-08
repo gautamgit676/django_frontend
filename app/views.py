@@ -16,18 +16,48 @@ def mainpage(request):
 
 
 def Userapicreate(request):
-    url = f"{BACKEND_API_BASE}userapi/"
-    try:
-        r = requests.post(url, timeout=5)
-        r.raise_for_status()
-        data = r.json()
-    except requests.exceptions.RequestException as e:
-        logger.error("Backend API error: %s", e)
-        data = {
-            "message": "Service unavailable",
-            "data": ""
+    if request.method == "POST":
+        url = f"{BACKEND_API_BASE}userapi/"
+
+        payload = {
+            "username": request.POST.get("username"),
+            "email": request.POST.get("email"),
+            "phone_number": request.POST.get("phone_number"),
+            "role": request.POST.get("role"),  # shopkeeper / customer
+            "password": request.POST.get("password"),
         }
-    return render(request, "userform.html", {"data": data})
+
+        headers = {
+            "Content-Type": "application/json"
+        }
+
+        try:
+            r = requests.post(
+                url,
+                json=payload,
+                headers=headers,
+                timeout=5
+            )
+
+            if r.status_code == 400:
+                return render(request, "userform.html", {
+                    "error": r.json()
+                })
+
+            r.raise_for_status()
+            data = r.json()
+
+            logger.info("User registered successfully: %s", data)
+
+            return redirect("userlogin")
+
+        except requests.exceptions.RequestException as e:
+            logger.error("Backend API error: %s", e)
+            return render(request, "userform.html", {
+                "error": "Service unavailable"
+            })
+
+    return render(request, "userform.html")
 
 def Usersdata(request):
     url = f"{BACKEND_API_BASE}userapi/"
@@ -83,7 +113,7 @@ def User_Profile(request):
             response_data = r.json()
 
             logger.info("Profile saved: %s", response_data)
-            return redirect("profile_success")
+            return redirect("mainpage")
 
         except requests.exceptions.HTTPError:
             logger.error("Backend error: %s", r.text)
