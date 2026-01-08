@@ -27,7 +27,7 @@ def mainpage(request):
         if r.status_code == 200:
             user_data = r.json()
 
-    return render(request, "mainpage.html", {"user": user_data})
+    return render(request, "main.html", {"user": user_data})
 
 
 def Userapicreate(request):
