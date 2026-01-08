@@ -7,10 +7,10 @@
 .scroll-box {
     max-height: 400px;        /* controls scroll height */
     overflow-y: auto;         /* vertical scroller */
-    border: 1px solid #ccc;
+    border: 1px solid #e5e983;
     border-radius: 6px;
     padding: 10px;
-    background-color: #f9f9f9;
+    background-color: #d6d16a;
 }
 
 .user-row {
