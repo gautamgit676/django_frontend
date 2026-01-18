@@ -119,6 +119,7 @@ button { padding:14px 38px; border-radius:50px; border:none; cursor:pointer; bac
     <li><a href="{% url 'profiles' %}">Profiles</a></li>
     <li><a href="{% url 'userlogin' %}">Login</a></li>
     <li><a href="{% url 'profilesdata' %}">ProfilesData</a></li>
+     <li>Username: {{ user.username }}</li>
 
     <li><a href="">StudentForm</a></li>
   </ul>
@@ -129,7 +130,7 @@ button { padding:14px 38px; border-radius:50px; border:none; cursor:pointer; bac
 
 
 {% block blockname %}
-  <b>this si from fdddgdfgfgdfgdfgfgdf</b>
+  
 {% endblock blockname %}
 <!-- BACKGROUND IMAGES -->
 <div class="bg-images">
