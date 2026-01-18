@@ -6,15 +6,31 @@
     <title>Document</title>
 </head>
 <body>
-    
+
+    <!-- add in tebles -->
+
+    <table>
+        <thead>
+            <tr>
+                <th>Address</th>
+                <th>Shop Name</th>
+                <th>Pincode</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody>
+
 {% for item in items %}
-    <p>{{ item.address }}</p>
-    <p>{{ item.shop_name }}</p>
-    <p>{{ item.pincode }}</p>
-    <p>{{ item.city }}</p>
-    <p>{{ item.state }}</p>
-    <p>{{ item.country }}</p>
-  
+    <tr>
+        <td>{{ item.address }}</td>
+        <td>{{ item.shop_name }}</td>
+        <td>{{ item.pincode }}</td>
+        <td>{{ item.city }}</td>
+        <td>{{ item.state }}</td>
+        <td>{{ item.country }}</td>
+    </tr>
 {% endfor %}
 
 </body>
