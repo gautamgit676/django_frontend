@@ -10,5 +10,8 @@ urlpatterns = [
     path('profiles/', User_Profile, name='profiles'),
     path('userlogin/', loginuser, name='userlogin'),
     path('profilesdata/', profiledata, name='profilesdata'),
+    
     # path('student/', create_student, name='student'),
+    
+    
 ]
