@@ -12,10 +12,7 @@
             <tr>
                   <th>
 
-                   {% if api_user %}
-    Welcome, {{ api_user.username }}
-{% endif %}</th>
- 
+
 
                 <!-- <th>User</th> -->
                 <th>Address</th>
@@ -31,7 +28,7 @@
 {% for item in items %}
     <tr>
         i need user add who login <!-- <td>{{ item.user }}</td> -->
-
+        <link rel="stylesheet" href="{{ item.user }}"> 
         <td>{{ item.address }}</td>
         <td>{{ item.shop_name }}</td>
         <td>{{ item.pincode }}</td>
