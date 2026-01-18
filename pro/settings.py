@@ -66,7 +66,15 @@ BACKEND_API_BASE = os.environ.get(
     "BACKEND_API_BASE",
     "https://djangodbconnect-production.up.railway.app/"
 )
-
+TEMPLATES = [
+    {
+        'OPTIONS': {
+            'context_processors': [
+                'django.contrib.auth.context_processors.auth',
+            ],
+        },
+    },
+]
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
