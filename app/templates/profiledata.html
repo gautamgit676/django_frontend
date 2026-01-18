@@ -5,15 +5,16 @@
 
 {% block blockname %}
 
-     {% if api_user %}
-    Welcome, {{ api_user.username }}
-{% endif %}
- 
-
+  
 
     <table>
         <thead>
             <tr>
+                   {% if api_user %}
+    Welcome, {{ api_user.username }}
+{% endif %}
+ 
+
                 <!-- <th>User</th> -->
                 <th>Address</th>
                 <th>Shop Name</th>
