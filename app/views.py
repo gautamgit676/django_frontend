@@ -147,8 +147,15 @@ def User_Profile(request):
 
 def profiledata(request):
     url = f"{BACKEND_API_BASE}userprofiles/"
+    token = request.session.get("access")
+    if not token:
+            return redirect("userlogin")
+
+    headers = {
+            "Authorization": f"Bearer {token}"
+        }
     try:
-        r = requests.get(url, timeout=5)
+        r = requests.get(url, headers=headers, timeout=5)
         r.raise_for_status()
         data = r.json()
         logger.info("Fetched profile data: %s", data)
