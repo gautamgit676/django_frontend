@@ -104,7 +104,7 @@ def User_Profile(request):
         }
 
         data = {
-            "user": request.POST.get("user"),   
+            # "user": request.POST.get("user"),   # e use signals for auto user create profile
             "address": request.POST.get("address"),
             "shop_name": request.POST.get("shop_name"),
             "pincode": request.POST.get("pincode"),
