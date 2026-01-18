@@ -104,6 +104,7 @@ def User_Profile(request):
         }
 
         data = {
+            "user": request.POST.get("user"),   
             "address": request.POST.get("address"),
             "shop_name": request.POST.get("shop_name"),
             "pincode": request.POST.get("pincode"),
