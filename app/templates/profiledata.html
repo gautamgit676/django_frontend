@@ -5,14 +5,9 @@
 
 {% block blockname %}
 
-      <p>{% if user %}
-  <li>Username: {{ user.username }}</li>
-  <li>Email: {{ user.email }}</li>
-{% else %}
-  <li>Not logged in</li>
+     {% if api_user %}
+    Welcome, {{ api_user.username }}
 {% endif %}
-</p>
-    <li>Username: {{ user.username }}</li>
  
 
 
