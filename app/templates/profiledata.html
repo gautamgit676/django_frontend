@@ -12,6 +12,7 @@
     <table>
         <thead>
             <tr>
+                <!-- <th>User</th> -->
                 <th>Address</th>
                 <th>Shop Name</th>
                 <th>Pincode</th>
@@ -24,6 +25,8 @@
 
 {% for item in items %}
     <tr>
+        i need user add who login <!-- <td>{{ item.user }}</td> -->
+        
         <td>{{ item.address }}</td>
         <td>{{ item.shop_name }}</td>
         <td>{{ item.pincode }}</td>
