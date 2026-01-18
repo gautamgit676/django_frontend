@@ -1,13 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
 
-    <!-- add in tebles -->
+
+
+{% extends "main.html" %}
+
+{% block blockname %}
+
+      <p>{% if user %}
+  <li>Username: {{ user.username }}</li>
+  <li>Email: {{ user.email }}</li>
+{% else %}
+  <li>Not logged in</li>
+{% endif %}
+</p>
+    <li>Username: {{ user.username }}</li>
+ 
+
 
     <table>
         <thead>
@@ -26,7 +33,7 @@
 {% for item in items %}
     <tr>
         i need user add who login <!-- <td>{{ item.user }}</td> -->
-        
+
         <td>{{ item.address }}</td>
         <td>{{ item.shop_name }}</td>
         <td>{{ item.pincode }}</td>
@@ -36,5 +43,4 @@
     </tr>
 {% endfor %}
 
-</body>
-</html>
+{% endblock blockname %}
