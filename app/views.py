@@ -144,6 +144,23 @@ def User_Profile(request):
 
     return render(request, "userprofile.html")
 
+
+def profiledata(request):
+    url = f"{BACKEND_API_BASE}userprofiles/"
+    try:
+        r = requests.get(url, timeout=5)
+        r.raise_for_status()
+        data = r.json()
+        logger.info("Fetched profile data: %s", data)
+    except requests.exceptions.RequestException as e:
+        logger.error("Backend API error: %s", e)
+        data = {
+            "message": "Service unavailable",
+            "data": ""
+        }
+    return render(request, "profiledata.html", {"items": data})
+
+
 logger = logging.getLogger(__name__)
 
 def loginuser(request):
