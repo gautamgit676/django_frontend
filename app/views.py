@@ -91,8 +91,61 @@ def Usersdata(request):
 
 
 
+
+def User_Profile(request, pk):
+    if request.method == "POST":   # ✅ HTML form sends POST
+
+        token = request.session.get("access")
+        if not token:
+            return redirect("userlogin")
+
+        url = f"{BACKEND_API_BASE}userprofiles/{pk}/"
+
+        headers = {
+            "Authorization": f"Bearer {token}"
+        }
+
+        data = {
+            "address": request.POST.get("address"),
+            "shop_name": request.POST.get("shop_name"),
+            "pincode": request.POST.get("pincode"),
+            "city": request.POST.get("city"),
+            "state": request.POST.get("state"),
+            "country": request.POST.get("country"),
+        }
+
+        files = {}
+        if request.FILES.get("profile_image"):
+            files["profile_image"] = request.FILES["profile_image"]
+
+        try:
+            r = requests.put(   # ✅ PUT to backend
+                url,
+                data=data,
+                files=files,
+                headers=headers,
+                timeout=10
+            )
+            r.raise_for_status()
+
+            logger.info("Profile updated")
+            return redirect("mainpage")
+
+        except requests.exceptions.HTTPError:
+            return render(request, "userprofile.html", {
+                "error": "Invalid data submitted"
+            })
+
+        except requests.exceptions.RequestException:
+            return render(request, "userprofile.html", {
+                "error": "Service unavailable"
+            })
+
+    return render(request, "userprofile.html")
+
+"""
 def User_Profile(request, pk=None):
-    if request.method == "PUT" or request.method == "POST":
+    if request.method == "PUT":
         url = f"{BACKEND_API_BASE}userprofiles/{pk}/"
 
         token = request.session.get("access")
@@ -118,7 +171,7 @@ def User_Profile(request, pk=None):
             files["profile_image"] = request.FILES["profile_image"]
 
         try:
-            r = requests.post(
+            r = requests.put(
                 url,
                 data=data,      # ✅ form-data
                 files=files,    # ✅ file upload
@@ -144,7 +197,7 @@ def User_Profile(request, pk=None):
             })
 
     return render(request, "userprofile.html")
-
+"""
 
 def profiledata(request):
     url = f"{BACKEND_API_BASE}userprofiles/"
