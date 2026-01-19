@@ -91,9 +91,9 @@ def Usersdata(request):
 
 
 
-def User_Profile(request):
+def User_Profile(request, pk=None):
     if request.method == "PUT" or request.method == "POST":
-        url = f"{BACKEND_API_BASE}userprofiles/<int:pk>/"
+        url = f"{BACKEND_API_BASE}userprofiles/{pk}/"
 
         token = request.session.get("access")
         if not token:
