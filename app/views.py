@@ -98,9 +98,9 @@ def User_Profile(request, pk):
         token = request.session.get("access")
         if not token:
             return redirect("userlogin")
-        userurl =  f"{BACKEND_API_BASE}me/"
+        # userurl =  f"{BACKEND_API_BASE}me/"
 
-        url = f"{BACKEND_API_BASE}userprofiles/{userurl}/"
+        url = f"{BACKEND_API_BASE}userprofiles/{pk}/"
 
         headers = {
             "Authorization": f"Bearer {token}"
