@@ -10,7 +10,7 @@ urlpatterns = [
     path('profiles/', User_Profile, name='profiles'),
     path('userlogin/', loginuser, name='userlogin'),
     path('profilesdata/', profiledata, name='profilesdata'),
-    path("profiles/<int:pk>/", User_Profile, name="profilesd"),
+    path("profiless/<int:pk>/", User_Profile, name="profilesd"),
     # path('student/', create_student, name='student'),
     
     
