@@ -99,7 +99,7 @@ def User_Profile(request, pk):
         if not token:
             return redirect("userlogin")
 
-        url = f"{BACKEND_API_BASE}userprofiles/{pk}/"
+        url = f"{BACKEND_API_BASE}userprofiles/me/"
 
         headers = {
             "Authorization": f"Bearer {token}"
